@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 262 83% 58%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -35,6 +35,21 @@ All colors MUST be HSL.
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
+
+    /* Lovable-inspired gradients and colors */
+    --gradient-hero: radial-gradient(circle at 50% 20%, hsl(262 83% 58% / 0.3), hsl(221 83% 53% / 0.2), hsl(262 83% 58% / 0.1));
+    --gradient-glow: radial-gradient(circle at 70% 80%, hsl(25 95% 53% / 0.4), transparent 50%);
+    --gradient-overlay: linear-gradient(135deg, hsl(262 83% 58% / 0.1), hsl(221 83% 53% / 0.05));
+    
+    /* Glass morphism */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    
+    /* Chat colors */
+    --chat-user: 262 83% 58%;
+    --chat-ai: 221 83% 53%;
+    --chat-bg: rgba(255, 255, 255, 0.05);
 
     --radius: 0.5rem;
 
@@ -101,5 +116,50 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-glow {
+    background: var(--gradient-glow);
+  }
+  
+  .gradient-overlay {
+    background: var(--gradient-overlay);
+  }
+  
+  .glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .chat-bubble-user {
+    background: hsl(var(--chat-user));
+    color: white;
+  }
+  
+  .chat-bubble-ai {
+    background: var(--chat-bg);
+    color: white;
+    border: 1px solid var(--glass-border);
+  }
+  
+  .hero-glow {
+    position: relative;
+  }
+  
+  .hero-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-glow);
+    z-index: -1;
   }
 }
