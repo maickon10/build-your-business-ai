@@ -14,6 +14,53 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_tasks: {
+        Row: {
+          ai_provider: string
+          created_at: string
+          error_message: string | null
+          id: string
+          input_data: Json | null
+          output_data: Json | null
+          project_id: string | null
+          status: string | null
+          task_type: string
+          updated_at: string
+        }
+        Insert: {
+          ai_provider: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          input_data?: Json | null
+          output_data?: Json | null
+          project_id?: string | null
+          status?: string | null
+          task_type: string
+          updated_at?: string
+        }
+        Update: {
+          ai_provider?: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          input_data?: Json | null
+          output_data?: Json | null
+          project_id?: string | null
+          status?: string | null
+          task_type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_tasks_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       businesses: {
         Row: {
           brand_colors: Json | null
@@ -63,6 +110,44 @@ export type Database = {
             columns: ["owner_id"]
             isOneToOne: false
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      generated_assets: {
+        Row: {
+          asset_type: string
+          created_at: string
+          file_name: string | null
+          file_url: string | null
+          id: string
+          metadata: Json | null
+          project_id: string | null
+        }
+        Insert: {
+          asset_type: string
+          created_at?: string
+          file_name?: string | null
+          file_url?: string | null
+          id?: string
+          metadata?: Json | null
+          project_id?: string | null
+        }
+        Update: {
+          asset_type?: string
+          created_at?: string
+          file_name?: string | null
+          file_url?: string | null
+          id?: string
+          metadata?: Json | null
+          project_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "generated_assets_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
             referencedColumns: ["id"]
           },
         ]
@@ -296,6 +381,42 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      projects: {
+        Row: {
+          briefing_data: Json | null
+          created_at: string
+          description: string | null
+          generated_content: Json | null
+          id: string
+          name: string
+          status: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          briefing_data?: Json | null
+          created_at?: string
+          description?: string | null
+          generated_content?: Json | null
+          id?: string
+          name: string
+          status?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          briefing_data?: Json | null
+          created_at?: string
+          description?: string | null
+          generated_content?: Json | null
+          id?: string
+          name?: string
+          status?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
       }
       sessions: {
         Row: {
